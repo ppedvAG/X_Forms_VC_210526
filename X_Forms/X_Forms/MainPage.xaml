@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="X_Forms.MainPage"
+             
+             xmlns:local="clr-namespace:X_Forms">
+
+    <ContentPage.Resources>
+        <x:String x:Key="BtnString">Hallo, ich bin eine Ressource</x:String>
+
+        <local:FactorConverter x:Key="factorConverter"/>
+    </ContentPage.Resources>
+
+    <ScrollView>
+    
+    <StackLayout HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand"
+                 Orientation="Vertical"
+                 BackgroundColor="LightBlue"
+                 Padding="5"
+                 Spacing="4">
+
+        <Label x:Name="Lbl_Main"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="Start"
+               FontSize="Title">
+
+            <Label.Text>
+                Hallo, ich bin ein String
+            </Label.Text>
+            
+        </Label>
+
+        <Button x:Name="Btn_KlickMich"
+                Text="Klick Mich, ich bin ein Button"
+                Clicked="Btn_KlickMich_Clicked"/>
+
+        <ImageButton x:Name="IBtn_Beispiel"
+                     Source="test.png"
+                     BackgroundColor="Transparent"
+                     WidthRequest="50"
+                     Clicked="IBtn_Beispiel_Clicked"/>
+
+        <Entry x:Name="Ent_Vorname"
+               Placeholder="Vorname"
+               Keyboard="Text"/>
+        <Entry x:Name="Ent_Nachname"
+               Placeholder="Nachnane"
+               Keyboard="Text"/>
+
+        <Picker Title="Monkeys" x:Name="Pkr_Monkeys">
+            <Picker.Items>
+                <x:String>Baboon</x:String>
+                <x:String>Capuchin Monkey</x:String>
+                <x:String>Blue Monkey</x:String>
+                <x:String>Squirrel Monkey</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Button x:Name="Btn_Resources"
+                Text="{StaticResource BtnString}"
+                FontSize="{StaticResource globalFontSize}"
+                Style="{StaticResource BtnStyle}"/>
+
+        <Label Text="{StaticResource BtnString}"/>
+
+        <StackLayout Orientation="Horizontal">
+            <Slider x:Name="Sdr_Binding_01"
+                    Minimum="0"
+                    Maximum="100"
+                    WidthRequest="300"/>
+            <Label Text="{Binding Source={x:Reference Sdr_Binding_01}, Path=Value, Mode=OneWay, StringFormat='Wert: {0}'}"/>
+        </StackLayout>
+        
+        <StackLayout Orientation="Horizontal">
+            <Slider x:Name="Sdr_Binding_02"
+                    Minimum="0"
+                    Maximum="100"
+                    WidthRequest="300"/>
+            <Label Text="{Binding Source={x:Reference Sdr_Binding_02}, Path=Value, Mode=OneWay, StringFormat='Wert: {0}', Converter={StaticResource factorConverter}, ConverterParameter=2.5}"/>
+        </StackLayout>
+
+        <StackLayout x:Name="StL_DataBinding">
+            <StackLayout.BindingContext>
+                <local:Person Vorname="Rainer" Nachname="Zufall"/>
+            </StackLayout.BindingContext>
+
+            <Label Text="{Binding Vorname}"/>
+            <Entry Text="{Binding Nachname}"/>
+
+            <Button x:Name="Btn_Aendern" Text="Namen ändern" Clicked="Btn_Aendern_Clicked"/>
+        </StackLayout>
+
+        <ListView x:Name="LstV_Namen"
+                  HeightRequest="150"
+                  ItemsSource="{Binding Personenliste}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="2">
+                                <Label Text="{Binding Vorname}"/>
+                                <Label Text="{Binding Nachname}"/>
+                            </StackLayout>
+                            
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Löschen" Clicked="MenuItem_Clicked" CommandParameter="{Binding}"/>
+                            </ViewCell.ContextActions>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+        </ListView>
+
+
+
+    </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>
