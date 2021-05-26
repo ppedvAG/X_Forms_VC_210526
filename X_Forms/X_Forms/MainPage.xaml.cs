@@ -66,5 +66,33 @@ namespace X_Forms
                 Personenliste.Remove(person);
             }
         }
+
+        //Navigationsbeispiele
+        private void Push_Clicked(object sender, EventArgs e)
+        {
+            //Aufruf einer neuen Seite innerhalb der aktuellen NavigationPage 
+            Navigation.PushAsync(new Layouts.GridLayoutBsp());
+        }
+
+        private void PushModal_Clicked(object sender, EventArgs e)
+        {
+            //Aufruf einer neuen Seite innerhalb der aktuellen NavigationPage, welche aber keine Navigationsleiste anzeigt
+            Navigation.PushModalAsync(new Layouts.StackLayoutBsp());
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new NavigationBsps.TabbedPageBsp());
+        }
+
+        private void Button_Clicked_1(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new NavigationBsps.CarouselPageBsp());
+        }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            Personenliste.Clear();
+        }
     }
 }

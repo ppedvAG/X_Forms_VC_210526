@@ -7,7 +7,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="X_Forms.MainPage"
              
-             xmlns:local="clr-namespace:X_Forms">
+             xmlns:local="clr-namespace:X_Forms"
+             
+             Title="MainPage">
 
     <!--Jeder Container hat eine Resource-Property, in welcher Ressourcen (Objekte, Styles, Converter, ...) für diesen 
     Container bereit gestellt werden können.-->
@@ -161,10 +163,29 @@
                 </ListView.ItemTemplate>
             </ListView>
 
+            <!--Verweis auf Beispiel-Layouts und -Navigation (vgl. CodeBehind, NavigationBsp und Layouts)-->
+            <StackLayout Orientation="Horizontal">
+                <Button HorizontalOptions="StartAndExpand"
+                        Text="Grid"
+                        Clicked="Push_Clicked"/>
+                <Button HorizontalOptions="StartAndExpand"
+                        Text="Stack"
+                        Clicked="PushModal_Clicked"/>
+                <Button HorizontalOptions="StartAndExpand"
+                        Text="Tabbed"
+                        Clicked="Button_Clicked"/>
+                <Button HorizontalOptions="StartAndExpand"
+                        Text="Carousel"
+                        Clicked="Button_Clicked_1"/>
+            </StackLayout>
 
 
         </StackLayout>
 
     </ScrollView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Liste löschen" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
 
 </ContentPage>

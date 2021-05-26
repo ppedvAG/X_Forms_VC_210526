@@ -13,19 +13,28 @@ namespace X_Forms
             InitializeComponent();
 
             //Zuweisung der MainPage-Property zu einer Page
-            MainPage = new Layouts.RelativeLayoutBsp();
+            //MainPage = new MainPage();
+
+            //Zuweisung der MainPage - Property zu einer NavigationPage(ermöglicht Stack - Navigation) mit Angabe der Startpage.
+            MainPage = new NavigationPage(new MainPage());
         }
 
+        public DateTime timestamp { get; set; }
+
+        //Methoden, welche zu bestimmten globalen Events ausgeführt werden (Start, Unterbrechen der App [Sleep], Wiederaktivierung der App [Resume])
         protected override void OnStart()
         {
+            MainPage.DisplayAlert("Aktuelle Zeit", DateTime.Now.ToString(), "Weiter");
         }
 
         protected override void OnSleep()
         {
+            timestamp = DateTime.Now;
         }
 
         protected override void OnResume()
         {
+            MainPage.DisplayAlert("Geschlafene Zeit:", DateTime.Now.Subtract(timestamp).ToString(), "ok");
         }
     }
 }
