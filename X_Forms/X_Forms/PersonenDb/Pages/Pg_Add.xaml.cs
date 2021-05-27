@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using X_Forms.PersonenDb.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -37,6 +37,11 @@ namespace X_Forms.PersonenDb.Pages
 
             //Hinzufügen zur lokalen Liste
             StaticObjects.PersonenListe.Add(person);
+            //Hinzufügen zur Datenbank
+            StaticObjects.DbController.AddPerson(person);
+
+            //Ausgabe eines Toasts
+            ToastController.ShowToastMessage($"{person.Vorname} {person.Nachname} wurde hinzugefügt.", ToastDuration.Long);
 
             //Leeren  der Eingabefelder
             Entry_Vorname.Text = string.Empty;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,22 +26,24 @@ namespace X_Forms
             //MainPage = new NavigationBsps.ShellBsp();
         }
 
-        public DateTime timestamp { get; set; }
+        //public DateTime timestamp { get; set; }
 
         //Methoden, welche zu bestimmten globalen Events ausgeführt werden (Start, Unterbrechen der App [Sleep], Wiederaktivierung der App [Resume])
         protected override void OnStart()
         {
-            MainPage.DisplayAlert("Aktuelle Zeit", DateTime.Now.ToString(), "Weiter");
+            //Aufruf der Essentials.Preferences-Klasse zum Speichern und Abrufen von App-Settings
+            if (Preferences.ContainsKey("timestamp"))
+                MainPage.DisplayAlert("Gespeicherte Zeit", Preferences.Get("timestamp", DateTime.Now).ToString(), "Weiter");
         }
 
         protected override void OnSleep()
         {
-            timestamp = DateTime.Now;
+            Preferences.Set("timestamp", DateTime.Now);
         }
 
         protected override void OnResume()
         {
-            MainPage.DisplayAlert("Geschlafene Zeit:", DateTime.Now.Subtract(timestamp).ToString(), "ok");
+            MainPage.DisplayAlert("Geschlafene Zeit:", DateTime.Now.Subtract(Preferences.Get("timestamp", DateTime.Now)).ToString(), "ok");
         }
     }
 }

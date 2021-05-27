@@ -37,7 +37,9 @@ namespace X_Forms.NavigationBsps.Flyout
                     new FlyoutMenuFlyoutMenuItem { Id = 0, Title = "MainPage", TargetType=typeof(MainPage) },
                     new FlyoutMenuFlyoutMenuItem { Id = 1, Title = "Tabbed", TargetType=typeof(TabbedPageBsp) },
                     new FlyoutMenuFlyoutMenuItem { Id = 2, Title = "GridLayout", TargetType=typeof(Layouts.GridLayoutBsp) },
-                    new FlyoutMenuFlyoutMenuItem { Id = 2, Title = "PersonenDB", TargetType=typeof(PersonenDb.Nav.PDBFlyoutMenu) },
+                    new FlyoutMenuFlyoutMenuItem { Id = 3, Title = "PersonenDB", TargetType=typeof(PersonenDb.Nav.PDBFlyoutMenu) },
+                    new FlyoutMenuFlyoutMenuItem { Id = 4, Title = "MVVM", TargetType=typeof(MVVMBsp.View.MainView) },
+                    new FlyoutMenuFlyoutMenuItem { Id = 5, Title = "GoogleBooks", TargetType=typeof(Uebungen.GoogleBooks.View.MainView) },
                 });
             }
 

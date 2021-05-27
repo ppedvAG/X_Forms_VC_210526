@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using X_Forms.PersonenDb.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,6 +17,8 @@ namespace X_Forms.PersonenDb.Pages
         {
             //GUI-Initialisierung
             InitializeComponent();
+
+            PersonenListe = new ObservableCollection<Model.Person>(StaticObjects.DbController.GetPeople());
 
             //Setzen des BindingContexts
             this.BindingContext = this;
@@ -38,6 +40,12 @@ namespace X_Forms.PersonenDb.Pages
             {
                 //Löschen aus lokaler Liste
                 StaticObjects.PersonenListe.Remove(p);
+
+                //Löschen aus Datenbank
+                StaticObjects.DbController.DeletePerson(p);
+
+                //Ausgabe eines Toasts
+                ToastController.ShowToastMessage($"{p.Vorname} {p.Nachname} wurde gelöscht.", ToastDuration.Long);
             }
 
         }

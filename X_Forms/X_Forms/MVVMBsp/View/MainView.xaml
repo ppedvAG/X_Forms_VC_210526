@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="X_Forms.MVVMBsp.View.MainView"
+             xmlns:vm="clr-namespace:X_Forms.MVVMBsp.ViewModel"
+             x:Name="Pg_MainView">
+
+    <!--Im View-Teil von MVVM-Projekten werden die Fenster per XAML definiert. Diese Klassen dürfen keinen Code-Behind
+    besitzen. Diese Aufgabe wird von dem entsprechenden ViewModel übernommen, welches als BindingContext des Views gesetzt
+    wird. Dies geschieht hier, im ersten Fenster des Programms, inner halb des XAML-Codes.-->
+    <ContentPage.BindingContext>
+        <vm:MainViewModel ContextPage="{x:Reference Pg_MainView}"/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <vm:ValidateEntryConverter x:Key="validateConverter"/>
+    </ContentPage.Resources>
+
+    <StackLayout Orientation="Vertical"
+                 Padding="10">
+
+        <!--Die Eigenschaften werden über Kurzbindungen an den BindingContext (das ViewModel) gebunden.-->
+        <Entry x:Name="Ent_Name" Placeholder="Name"
+               Text="{Binding NeuerName}"/>
+
+        <Entry x:Name="Ent_Alter" Placeholder="Alter"
+               Text="{Binding NeuesAlter}"/>
+
+        <!--Commands erstezen die Events. CommandParameter können beliebige zusätzliche Infos enthalten,
+        welche die Commands für ihre Ausführung benötigen-->
+        <Button x:Name="Btn_AddPerson" Text="Hinzufügen"
+                Command="{Binding HinzufuegenCmd}">
+            <Button.CommandParameter>
+                <!--Mittels der CommandParameter-Eigenschaft kann ein weiteres Objekt an das Command gesendet werden.
+            Hier wird ein Multibinding und ein Converter verwendet um mehrere Objekte zu übergeben.-->
+                <MultiBinding Converter="{StaticResource validateConverter}">
+                    <Binding Source="{x:Reference Ent_Name}" Path="Text"/>
+                    <Binding Source="{x:Reference Ent_Alter}" Path="Text"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+
+        <ListView x:Name="LstV_Personenliste"
+                  VerticalOptions="FillAndExpand"
+                  ItemsSource="{Binding Personenliste}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Name}"/>
+                            <Label Text="{Binding Alter}"/>
+                        </StackLayout>
+
+                        <ViewCell.ContextActions>
+                            <MenuItem x:Name="CaMi_Delete" Text="Löschen"
+                                      Command="{Binding Source={x:Reference Pg_MainView}, Path=BindingContext.LoeschenCmd}"
+                                      CommandParameter="{Binding}"/>
+                        </ViewCell.ContextActions>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+    
+</ContentPage>

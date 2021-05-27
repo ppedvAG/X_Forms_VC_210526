@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace X_Forms
@@ -31,6 +32,9 @@ namespace X_Forms
             //Durch Setzen des BindingContextes nehmen Kurzbindungen aus dem XAML-Code automatisch Bezug auf die Properties
             //des im BindingContext gesetzten Objekts
             this.BindingContext = this;
+
+            //Zugriff auf Xamarin.Essentials.Battery zur Anzeige des Batteriestandes (benötigt BatteryState-Permission)
+            Lbl_Battery.Text = Battery.State.ToString() + " | Level: " + Battery.ChargeLevel * 100 + "%";
         }
 
         private void Btn_KlickMich_Clicked(object sender, EventArgs e)
@@ -95,9 +99,17 @@ namespace X_Forms
             Personenliste.Clear();
         }
 
+        //Aufruf der Shell-Navigation
         private void Button_Clicked_2(object sender, EventArgs e)
         {
             Shell.Current.GoToAsync("//Layouts/Beispiele/Relative");
+        }
+
+        private async void Btn_Youtube_Clicked(object sender, EventArgs e)
+        {
+            //Öffnen der Youtube-App über die Xamarin-Essentials mit Übergabe des Package-Namens
+            if (await Launcher.CanOpenAsync("vnd.youtube://"))
+                await Launcher.OpenAsync("vnd.youtube://rLKnqR9Oqh8");
         }
     }
 }
