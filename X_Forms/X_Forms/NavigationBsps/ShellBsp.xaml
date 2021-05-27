@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="X_Forms.NavigationBsps.ShellBsp"
+       xmlns:ub="clr-namespace:X_Forms.Uebungen"
+       xmlns:bsp="clr-namespace:X_Forms.Layouts"
+       xmlns:local="clr-namespace:X_Forms">
+
+    <FlyoutItem Title="Main" Route="Main">
+        <local:MainPage/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="LayoutBsp" Route="Layouts">
+        <Tab Title="Übungen" Route="Uebungen">
+            <ShellContent Route="Absolute">
+                <ub:U_AbsoluteL/>
+            </ShellContent>
+            <ShellContent Route="Relative">
+                <ub:U_RelativeL/>
+            </ShellContent>
+        </Tab>
+        <Tab Title="Beispiele" Route="Beispiele">
+            <ShellContent Route="Absolute">
+                <bsp:AbsoluteLayoutBsp/>
+            </ShellContent>
+            <ShellContent Route="Relative">
+                <bsp:RelativeLayoutBsp/>
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+    
+</Shell>

@@ -94,5 +94,10 @@ namespace X_Forms
         {
             Personenliste.Clear();
         }
+
+        private void Button_Clicked_2(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//Layouts/Beispiele/Relative");
+        }
     }
 }

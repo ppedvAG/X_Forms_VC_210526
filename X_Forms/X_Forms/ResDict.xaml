@@ -2,7 +2,8 @@
 <!--ResourceDictionaries können jegliche Art von Xaml-Ressourcen beinhalten, müssen aber in einem lokalen 
     Ressourcen-Tag angemeldet werden. Vgl. App.xaml-->
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:local="clr-namespace:X_Forms">
 
     <x:Double x:Key="globalFontSize">18.0</x:Double>
 
@@ -22,4 +23,5 @@
         <Setter Property="FontSize" Value="{StaticResource globalFontSize}"/>
     </Style>
     
+
 </ResourceDictionary>

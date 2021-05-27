@@ -19,6 +19,7 @@
         <x:String x:Key="BtnString">Hallo, ich bin eine Ressource</x:String>
 
         <local:FactorConverter x:Key="factorConverter"/>
+        
     </ContentPage.Resources>
 
     <!--Ein ScrollView ermöglicht dem User das Scrollen-->
@@ -177,6 +178,9 @@
                 <Button HorizontalOptions="StartAndExpand"
                         Text="Carousel"
                         Clicked="Button_Clicked_1"/>
+                <Button HorizontalOptions="StartAndExpand"
+                        Text="Shell"
+                        Clicked="Button_Clicked_2"/>
             </StackLayout>
 
 
