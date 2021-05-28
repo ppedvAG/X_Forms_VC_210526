@@ -22,5 +22,10 @@
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="Tbi_SaveList" Text="Save List" Clicked="Tbi_SaveList_Clicked"/>
+        <ToolbarItem x:Name="Tbi_LoadList" Text="Load List" Clicked="Tbi_LoadList_Clicked"/>
+    </ContentPage.ToolbarItems>
 
 </ContentPage>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,6 +49,16 @@ namespace X_Forms.PersonenDb.Pages
                 ToastController.ShowToastMessage($"{p.Vorname} {p.Nachname} wurde gelöscht.", ToastDuration.Long);
             }
 
+        }
+
+        private void Tbi_LoadList_Clicked(object sender, EventArgs e)
+        {
+            LstV_Liste.ItemsSource = new ObservableCollection<Model.Person>(Services.JsonController.Load<List<Model.Person>>());
+        }
+
+        private void Tbi_SaveList_Clicked(object sender, EventArgs e)
+        {
+            Services.JsonController.Save(StaticObjects.PersonenListe);
         }
     }
 }

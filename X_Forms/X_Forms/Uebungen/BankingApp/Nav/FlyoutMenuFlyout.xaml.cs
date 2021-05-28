@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace X_Forms.NavigationBsps.Flyout
+namespace X_Forms.Uebungen.BankingApp.Nav
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FlyoutMenuFlyout : ContentPage
@@ -25,7 +25,6 @@ namespace X_Forms.NavigationBsps.Flyout
             ListView = MenuItemsListView;
         }
 
-        //Genestete ViewModel-Klasse mit Itemliste, welche die Einträge im Flyout definiert
         class FlyoutMenuFlyoutViewModel : INotifyPropertyChanged
         {
             public ObservableCollection<FlyoutMenuFlyoutMenuItem> MenuItems { get; set; }
@@ -34,13 +33,10 @@ namespace X_Forms.NavigationBsps.Flyout
             {
                 MenuItems = new ObservableCollection<FlyoutMenuFlyoutMenuItem>(new[]
                 {
-                    new FlyoutMenuFlyoutMenuItem { Id = 0, Title = "MainPage", TargetType=typeof(MainPage) },
-                    new FlyoutMenuFlyoutMenuItem { Id = 1, Title = "Tabbed", TargetType=typeof(TabbedPageBsp) },
-                    new FlyoutMenuFlyoutMenuItem { Id = 2, Title = "GridLayout", TargetType=typeof(Layouts.GridLayoutBsp) },
-                    new FlyoutMenuFlyoutMenuItem { Id = 3, Title = "PersonenDB", TargetType=typeof(PersonenDb.Nav.PDBFlyoutMenu) },
-                    new FlyoutMenuFlyoutMenuItem { Id = 4, Title = "MVVM", TargetType=typeof(MVVMBsp.View.MainView) },
-                    new FlyoutMenuFlyoutMenuItem { Id = 5, Title = "GoogleBooks", TargetType=typeof(Uebungen.GoogleBooks.View.MainView) },
-                    new FlyoutMenuFlyoutMenuItem { Id = 6, Title = "BankingApp", TargetType=typeof(Uebungen.BankingApp.View.LoginView) },
+                    new FlyoutMenuFlyoutMenuItem { Id = 0, Title = "Startseite", TargetType = typeof(View.BankingView) },
+                    new FlyoutMenuFlyoutMenuItem { Id = 1, Title = "Konto anlegen", TargetType=typeof(View.AddAccountView)},
+                    new FlyoutMenuFlyoutMenuItem { Id = 2, Title = "Einzahlen/Auszahlen", TargetType=typeof(View.DepositWithdrawView) },
+                    new FlyoutMenuFlyoutMenuItem { Id = 4, Title = "Logout"},
                 });
             }
 

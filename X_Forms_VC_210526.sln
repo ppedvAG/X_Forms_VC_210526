@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X_Forms.Android", "X_Forms\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X_Forms.iOS", "X_Forms\X_Forms.iOS\X_Forms.iOS.csproj", "{4B808EE6-5D80-45B7-8041-F42108F31389}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X_Forms", "X_Forms\X_Forms\X_Forms.csproj", "{2514E84E-6370-4AEE-A902-579C578E986C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X_Forms", "X_Forms\X_Forms\X_Forms.csproj", "{2514E84E-6370-4AEE-A902-579C578E986C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

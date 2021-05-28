@@ -23,6 +23,9 @@ namespace X_Forms
         //Konstruktor
         public MainPage()
         {
+            //Setzten der Ressourcensprache -> Bestimmt, welche resx-Bibliothek für die Lokalisierung verwendet wird
+            Loc.Resource.Culture = new System.Globalization.CultureInfo("de");
+
             //Initialisierung der UI (Xaml-Datei). Sollte immer erste Aktion des Konstruktors sein
             InitializeComponent();
 
@@ -110,6 +113,17 @@ namespace X_Forms
             //Öffnen der Youtube-App über die Xamarin-Essentials mit Übergabe des Package-Namens
             if (await Launcher.CanOpenAsync("vnd.youtube://"))
                 await Launcher.OpenAsync("vnd.youtube://rLKnqR9Oqh8");
+        }
+
+        //Bsp für Verwendung des MessagingCenters
+        private void Btn_MCSender_Clicked(object sender, EventArgs e)
+        {
+            //Instanzieren des Empängerobjekts
+            Page subscriber = new Pg_MCSubscriber();
+            //Senden der Nachricht mit Angabe des Senders, des Titels und des Inhalts
+            MessagingCenter.Send(this, "Gesendeter Text", Pkr_Monkeys.SelectedItem?.ToString());
+            //Öffnen der Bsp-Seite
+            Navigation.PushAsync(subscriber);
         }
     }
 }
